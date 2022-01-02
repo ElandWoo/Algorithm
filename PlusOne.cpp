@@ -5,6 +5,7 @@
 你可以假设除了整数 0 之外，这个整数不会以零开头。
 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems/plus-one
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+时间复杂度最好为O(1),最坏为O(n);空间复杂度最好为O(1),最坏为O(n).
 */
 
 class Solution {
