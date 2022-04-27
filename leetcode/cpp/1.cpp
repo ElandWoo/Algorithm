@@ -21,6 +21,9 @@ public:
     return {};
     }
   
+  /*
+  we can delete a loop to make complexity O(n^2) to O(n)
+  */
     vector<int> twoSum(vector<int>& nums, int target) {
         // store nums[i] ans i in case of sort
         vector<pair<int, int>> array;
@@ -41,4 +44,22 @@ public:
         }
         return {};
     }
+  
+  /*
+  and we can use unordered_map, tidy and fast.
+  */
+      vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> m;
+        int n = nums.size();
+        for (int i = 0; i < n; i++) {
+            // if target - nums[i] in m, just return the ans;
+            // if not update the unordered_map.
+            if (m.find(target - nums[i]) != m.end()) {
+                return {i, m[target - nums[i]]};
+            }
+            m[nums[i]] = i;
+        }
+        return {};
+    }
+
 };
