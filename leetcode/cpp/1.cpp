@@ -9,7 +9,7 @@ public:
   /*
   time complexity O(n^2), not good.
   */
-    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> twoSum1(vector<int>& nums, int target) {
         int n = nums.size();
         for (int i = 0; i < n; i++) {
         int tmp = target - nums[i];
@@ -22,9 +22,38 @@ public:
     }
   
   /*
+  be better.
+  */
+      vector<int> twoSum2(vector<int>& nums, int target) {
+        int n = nums.size();
+        vector<int> ans;
+
+        vector<int> array(nums);
+        sort(array.begin(), array.end());
+
+        for (int i = 0; i < n; i++) {
+            int tmp = target - array[i];
+            // find first num that not less than tmp in begin to the end.
+            int p = lower_bound(array.begin(), array.end(), tmp) - array.begin();
+            if (0 <= p && p < n && array[p] == tmp) {
+                for (int j = 0; j < n; j++) {
+                    // push the first num and second num into ans
+                    if (nums[j] == array[i] || nums[j] == tmp)
+                        ans.push_back(j);
+                    // if there is a solution ,return the ans
+                    if (ans.size() == 2) return ans;
+                }
+            }
+        }
+        return {};
+    }
+};
+  
+  
+  /*
   we can delete a loop to make complexity O(n^2) to O(n)
   */
-    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> twoSum3(vector<int>& nums, int target) {
         // store nums[i] ans i in case of sort
         vector<pair<int, int>> array;
         for (int i = 0; i < nums.size(); i++) {
@@ -48,7 +77,7 @@ public:
   /*
   and we can use unordered_map, tidy and fast.
   */
-      vector<int> twoSum(vector<int>& nums, int target) {
+      vector<int> twoSum4(vector<int>& nums, int target) {
         unordered_map<int, int> m;
         int n = nums.size();
         for (int i = 0; i < n; i++) {
@@ -67,7 +96,7 @@ public:
   /*
   the same as last solution.
   */
-    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> twoSum5(vector<int>& nums, int target) {
         unordered_map<int, int> m;
         int n = nums.size();
         for (int i = 0; i < n; i++) {
